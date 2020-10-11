@@ -1,0 +1,25 @@
+{% if data %}
+	<div style="margin-bottom: 30px;">
+		<h5 style="margin-top: 20px;"> {{ _("Transactions") }} </h5>
+		<table style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+			<thead>
+				<tr>
+					<th style="border: 1px solid #d1d8dd; width: 40%; text-align: left; padding: 5px;">{{ _("Invoice/Order No") }}</th>
+					<th style="border: 1px solid #d1d8dd; width: 30%; text-align: left; padding: 5px;">{{ _("Qty") }}</th>
+					<th style="border: 1px solid #d1d8dd; width: 30%; text-align: left; padding: 5px;">{{ _("Rate") }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in data -%}
+				<tr>
+					<td style="border: 1px solid #d1d8dd; text-align: left; padding: 5px;">{{ frappe.utils.get_link_to_form(doctype, row.parent) }}</td>
+					<td style="border: 1px solid #d1d8dd; text-align: left; padding: 5px;">{{ row.qty }}</td>
+					<td style="border: 1px solid #d1d8dd; text-align: left; padding: 5px;">{{ row.rate }}</td>
+				</tr>
+				{%- endfor %}
+			</tbody>
+		</table>
+	</div>
+{% else %}
+<p style="margin-top: 30px;"> No Any Transactions </p>
+{%- endif %}
