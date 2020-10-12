@@ -2,6 +2,20 @@ frappe.ui.form.on('Sales Invoice', {
 	onload: function(frm) {
 		let items = frm.get_field("items").grid;
 		items.toggle_enable("amount", true);
+
+		frm.set_query("uom", "items", function(doc, cdt, cdn) {
+			const row = locals[cdt][cdn];
+
+			return {
+				query: "trading_customization.api.uom_query",
+				filters: {
+					'item_code': row.item_code
+				}
+			};
+		});
+	},
+	after_save: function(frm) {
+		$(frm.fields_dict.last_transaction_custom.wrapper).empty()
 	}
 })
 

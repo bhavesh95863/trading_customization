@@ -14,3 +14,11 @@ def get_last_transaction(c_doctype,p_doctype,item,parent):
 	return frappe.render_template("trading_customization/templates/last_transaction.html",{'data':transaction_list,'doctype':p_doctype})
 
 	
+@frappe.whitelist()
+def uom_query(doctype, txt, searchfield, start, page_len, filters):
+	if not filters.get('item_code'):
+		frappe.throw(_("Select Item First"))
+	uom_list = frappe.db.sql("""SELECT uom
+FROM `tabUOM Conversion Detail`
+WHERE parent=%s""",filters.get('item_code'))
+	return uom_list
