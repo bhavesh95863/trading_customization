@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include trading_customization *.css
+recursive-include trading_customization *.csv
+recursive-include trading_customization *.html
+recursive-include trading_customization *.ico
+recursive-include trading_customization *.js
+recursive-include trading_customization *.json
+recursive-include trading_customization *.md
+recursive-include trading_customization *.png
+recursive-include trading_customization *.py
+recursive-include trading_customization *.svg
+recursive-include trading_customization *.txt
+recursive-exclude trading_customization *.pyc
